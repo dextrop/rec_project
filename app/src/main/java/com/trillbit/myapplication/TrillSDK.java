@@ -33,25 +33,25 @@ public class TrillSDK {
         this.player = new Player(context);
     }
 
-    private void attach_callback(TrillCallbacks trillCallbacks) {
+    public void attach_callback(TrillCallbacks trillCallbacks) {
         this.trillCallbacks = trillCallbacks;
     }
 
-    private void start() {
+    public void start() {
         this.recorder.initRecorder();
         rec_state = 0;
     }
 
-    private void stop() {
+    public void stop() {
         this.recorder.destroyRec();
         processor.stopProcess();
     }
 
-    private void play(String payload) {
+    public void play(String payload) {
         this.player.play(payload);
     }
 
-    private void stopPlay(String payload) {
+    public void stopPlay(String payload) {
         this.player.stop();
     }
 
