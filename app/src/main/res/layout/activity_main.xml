@@ -46,14 +46,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Start Play"
-                android:onClick=""/>
+                android:onClick="start_play"/>
 
             <Button
                 android:id="@+id/button2"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stop Play" />
+                android:text="Stop Play"
+                android:onClick="stop_play"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -69,6 +71,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="start_rec"
                 android:text="Start Rec" />
 
             <Button
@@ -76,6 +79,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="stop_rec"
                 android:text="Stop Rec" />
 
         </LinearLayout>

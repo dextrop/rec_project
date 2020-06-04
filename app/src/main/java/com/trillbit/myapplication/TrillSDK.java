@@ -1,6 +1,7 @@
 package com.trillbit.myapplication;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.trillbit.myapplication.core.CWrapper;
 import com.trillbit.myapplication.player.Player;
@@ -38,6 +39,7 @@ public class TrillSDK {
     }
 
     public void start() {
+        Log.e("TrillSDK", "Start Recorder");
         this.recorder.initRecorder();
         rec_state = 0;
     }
