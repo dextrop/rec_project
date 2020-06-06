@@ -65,7 +65,7 @@ public class TestCoreLibrary {
     }
 
     public void testPlay(Context context) {
-        Player player = new Player(context);
+        Player player = new Player(context, this.cWrapper);
         player.play("abcdef");
 
     }

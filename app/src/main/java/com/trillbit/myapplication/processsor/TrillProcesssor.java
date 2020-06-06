@@ -52,8 +52,10 @@ public class TrillProcesssor {
                 @Override
                 public void run() {
                     while (isProcessing) {
-                        String result = cWrapper.ProcessBuffer();
-                        processOutput(result);
+                        int result = cWrapper.ProcessBuffer();
+//                        Log.e(TAG, "Demodulation state : "+ result);
+                        String decodedString = cWrapper.GetDecodedString();
+                        processOutput(decodedString);
                     }
                     sdkState = 0;
                     ProcessorThread.interrupt();

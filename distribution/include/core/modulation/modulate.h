@@ -17,8 +17,8 @@
 class Modulate {
   public:
     Modulate();
-    void GenerateSignal(const std::string& payload, std::vector<double>& output_signal, bool irr_status = false);
-    std::vector<double> GenerateSignal(const std::string& payload, bool irr_status = false);
+    void GenerateSignal(const std::string& payload, std::vector<double>& output_signal, bool is_acknack_mode = false);
+    std::vector<double> GenerateSignal(const std::string& payload, bool is_acknack_mode = false);
     void SetCallBack (DebugInfo callback_fun);
     void SetVersion(std::string version_select);
 #ifdef DEBUG

@@ -58,11 +58,12 @@ public class Player {
 
     }
 
-    public Player(Context context) {
+    public Player(Context context, CWrapper cwrapper) {
         this.context = context;
         this.player_config = new config();
         this.audioManager = (AudioManager) this.context.getSystemService(Context.AUDIO_SERVICE);
-        this.cWrapper = new CWrapper();
+//        this.cWrapper = new CWrapper();
+        this.cWrapper = cwrapper;
     }
 
     private void set_player_volume(double volume_variable) {

@@ -9,7 +9,7 @@
 #include <core/utils/filters/filter.h>
 #include <core/modulation/helper/helpers.h>
 #include <core/all_config.h>
-
+#include <functional>
 
 // @ class : ModulationHeader 
 // @ author: Phani Sai Chand Gali
@@ -22,8 +22,7 @@ public:
   void GenerateHeader(std::vector<double>& header_signal);
   std::vector<double> GenerateHeader();
   void SetCallBack (DebugInfo callback_fun);
-  
-private:
+  void GenerateAckNackHeader(std::string payload,std::vector<double>& header_signal);
   void GenerateFts(std::vector<double>& fts_signal);
   void GenerateCts(std::vector<double>& cts_signal);
 

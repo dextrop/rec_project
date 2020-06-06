@@ -2,6 +2,7 @@
 #define DATA_HANDLER_H
 
 #include <core/demodulation/cts_detection.h>
+#include <core/demodulation/cts_acknack.h>
 #include <core/demodulation/peak_processing.h>
 #include <core/demodulation/data_processing.h>
 #include <core/err_crr/fec.h>
@@ -11,10 +12,11 @@
  * @todo  : Modify the ProcessData function
  */
 
-#define PEAKCHECKS 3
+#define PEAKCHECKS 4
 extern std::vector<bool> decodedBits;
 extern std::vector<double> decodedBitsConfidence;
 extern std::vector<int> decodedSymbols;
+extern std::string gModPayload;
   /*
 class DemodState;
 
@@ -59,6 +61,7 @@ public:
     void Reset();
     void AddBuffer(const std::vector<double>& buffer);
     void ProcessChunk();
+    int ProcessAcknack(); //processing acknack
     std::string GetDecodedString ();
     DemodState GetCurrentState();
     void SetCallBack(DebugInfo callback_fun);
@@ -66,8 +69,6 @@ public:
 #ifdef DEBUG
     std::vector<bool> expected_bits;
 #endif
-
-private:
     void ProcessCts(); 
     void ProcessFts(); 
     void ProcessData(); 
@@ -77,20 +78,21 @@ private:
     //@todo add it to global variables
   int checkstatus = 0;
   int peakIndex[PEAKCHECKS];
-  double peakAmp[PEAKCHECKS] = {0,0,0};
+  double peakAmp[PEAKCHECKS] = {0,0,0,0};
   bool is_processing_; //didn't find the use of this variable
   DemodState current_state_;
-  CtsDetect cts_detect_;
-  DataProcessing data_processing_;
-  PeakProcessing peak_processing_;
-  int fts_counter_;
+  CtsDetect cts_detect_; //detecting cts
+  DataProcessing data_processing_; //data processing
+  PeakProcessing peak_processing_; //peak processing in fts detection
+  int fts_counter_; //for skipping
   int counter_;
-  Fec fec;
-  std::string decoded_payload_;
-  DebugInfo debug_info_;
-  const CtsParams& cts_params_;
-  const FtsParams& fts_params_;
-  const PayloadParams& payload_params_;
+  Fec fec_;
+  std::string decoded_payload_; //decoded payload
+  DebugInfo debug_info_; //for printing the debug information into the callback
+  CtsParams& cts_params_; //reference to cts parameters
+  FtsParams& fts_params_; //reference to fts parameters
+  PayloadParams& payload_params_; //reference to payload parameters
+  int cts_samples_count_; //no of chunks of cts processed from first figuring of cts
 };
 
 #endif

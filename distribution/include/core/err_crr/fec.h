@@ -5,7 +5,9 @@
 #include <core/global_var.h>
 #include <vector>
 #include <bitset>
-#include <core/err_crr/liquid/liquidfec/liquid.internal.h>
+#include <external/liquid/liquidfec/liquid.internal.h>
+#include <external/correct/include/fec_shim.h>
+// #include <correct.h>
 #include <core/global_var_internal.h>
 
 

@@ -31,7 +31,7 @@ public class TrillSDK {
         attach_rec_callback();
         this.recorder = new Recorder(this.rec_callback);
 
-        this.player = new Player(context);
+        this.player = new Player(context,this.cWrapper);
     }
 
     public void attach_callback(TrillCallbacks trillCallbacks) {
@@ -53,7 +53,7 @@ public class TrillSDK {
         this.player.play(payload);
     }
 
-    public void stopPlay(String payload) {
+    public void stopPlay() {
         this.player.stop();
     }
 
@@ -75,6 +75,7 @@ public class TrillSDK {
             @Override
             public void onBufferReceived(short[] buffer) {
                 super.onBufferReceived(buffer);
+                Log.e("OnBufferReceived", "Buffer size : " + buffer.length);
                 if (processor_state == 1) {
                     processor.addBuffer(buffer);
                 }

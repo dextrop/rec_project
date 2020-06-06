@@ -25,8 +25,6 @@ extern bool welCalState;
 //bool preambleState = PREAMBLE_STATE;
 extern bool preambleState;
 extern std::vector<double> audioInputBuffer;
- //temporrary global variable . Needd to be changed
-extern std::string decodedDataG;
 
 extern bool ctsEnableState;
 extern bool isDataDecoded;

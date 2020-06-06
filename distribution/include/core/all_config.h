@@ -42,9 +42,12 @@ class CtsParams {
       first_freq_ (17250),
       second_freq_ (18250),
       fft_size_ (1024),
+      acknack_fft_size_ (2048),
       band_start_ (17000),
       band_end_ (19500),
       band_energy_gap_ (500),
+      acknack_band_gap_(100),
+      acknack_dominant_freq_window_(100),
       dominant_freq_window_ (200),
       pattern_match_size_ (3),
       acknack_pattern_match_size_(2),
@@ -62,10 +65,13 @@ class CtsParams {
     void SetFirstFrequency(int first_frequency) { first_freq_ = first_frequency; }
     void SetSecondFrequency(int second_frequency) { second_freq_ = second_frequency; }
     void SetFFTSize (unsigned fft_size) { fft_size_ = fft_size; }
+    void SetAcknackFFTSize (unsigned acknack_fft_size) { acknack_fft_size_ = acknack_fft_size; }
     void SetBandStart (unsigned band_start) { band_start_ = band_start; }
     void SetBandEnd (unsigned band_end) { band_end_ = band_end; }
     void SetBandEnergyGap (unsigned band_energy_gap) { band_energy_gap_ = band_energy_gap; }
+    void SetAcknackBandGap(int acknack_band_gap) { acknack_band_gap_ = acknack_band_gap; }
     void SetDominantFreqWindow(unsigned dominant_freq_window) { dominant_freq_window_ = dominant_freq_window; }
+    void SetAcknackDominantFreqWindow(unsigned acknack_dominant_freq_window) { acknack_dominant_freq_window_ = acknack_dominant_freq_window; }
     void SetPatternMatchSize (unsigned pattern_match_size) { pattern_match_size_ = pattern_match_size; }
     void SetAckNackPatternMatchSize (unsigned pattern_match_size) { acknack_pattern_match_size_ = pattern_match_size; }
     void SetFalseReturn (int false_return) { false_return_ = false_return; }
@@ -80,10 +86,13 @@ class CtsParams {
     int GetFirstFrequency () const { return first_freq_; }
     int GetSecondFrequency () const { return second_freq_; }
     unsigned GetFFTSize () const { return fft_size_; }
+    int GetAcknackFFTSize () const { return acknack_fft_size_; }
     unsigned GetBandStart () const { return band_start_; }
     unsigned GetBandEnd () const { return band_end_; }
     unsigned GetBandEnergyGap () const { return band_energy_gap_; }
+    unsigned GetAcknackBandGap () const { return acknack_band_gap_; }
     unsigned GetDominantFrequencyWindow () const { return dominant_freq_window_; }
+    int GetAcknackDominantFreqWindow () const { return acknack_dominant_freq_window_; }
     unsigned GetPatternMatchSize () const { return pattern_match_size_; }
     unsigned GetAckNackPatternMatchSize () const { return acknack_pattern_match_size_; }
     int GetFalseReturn () const { return false_return_; }
@@ -163,10 +172,13 @@ class CtsParams {
     int first_freq_;
     int second_freq_;
     unsigned fft_size_;
+    int acknack_fft_size_;
     unsigned band_start_;
     unsigned band_end_;
     unsigned band_energy_gap_; 
+    int acknack_band_gap_; 
     unsigned dominant_freq_window_;
+    int acknack_dominant_freq_window_;
     unsigned pattern_match_size_;
     unsigned acknack_pattern_match_size_;
     int false_return_; 
@@ -496,8 +508,16 @@ class options {
 // @ brief : Start of all the configuration settings (serializing or deserializing)
 class ConfigSettings {
   public:
-    ConfigSettings(string version_name) : config_version_(version_name) { }
+    ConfigSettings(string version_name) : config_version_(version_name),
+                                          cts_params_ (options::CTS),
+                                          fts_params_ (options::FTS),
+                                          payload_params_(options::PAYLOAD)
+    { 
+      SetupConfig();
+    }
 
+  private:
+    void SetupConfig();
     /*
     void DeSerialize (const Value& d); 
 
@@ -515,7 +535,12 @@ class ConfigSettings {
     */
   private:
     string config_version_;
-    options opt_;
+
+  public:
+    const CtsParams& cts_params_;
+    const FtsParams& fts_params_;
+    const PayloadParams& payload_params_;
+   // options opt_;
 };
 
 #endif

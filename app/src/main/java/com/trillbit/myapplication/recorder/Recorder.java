@@ -93,7 +93,7 @@ public class Recorder {
         if (recState == RecState.INITIALIZED) {
             recorder.startRecording();
             recState = RecState.STARTING_RECORDER;
-            Log.e("Stating Recorder", "Recorder Class " + recState);
+            Log.e("Starting Recorder", "Recorder Class " + recState);
             collectorThread = new Thread() {
                 @Override
                 public void run() {
