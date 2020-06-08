@@ -42,6 +42,7 @@ public class TrillProcesssor {
         if (len > 3) {
             Log.e(TAG, "Decoded: " + result.length() + ", " + result);
             this.callbacks.onReceived(result);
+            cWrapper.ResetDecodedString();
         }
     }
 

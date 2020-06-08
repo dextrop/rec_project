@@ -9,6 +9,7 @@ public class CWrapper {
     private static native void addBuffer(short [] samples, int len);
     private static native int processBuffer();
     private static native String getDecodedString();
+    private static native void resetDecodedString();
 
     public CWrapper() {
         setUp();
@@ -27,4 +28,6 @@ public class CWrapper {
     }
 
     public String GetDecodedString() { return getDecodedString();}
+
+    public void ResetDecodedString() { resetDecodedString();}
 }

@@ -25,7 +25,8 @@ class LibTrill {
     bool Setup (int payload_len);
     void AddBuffer (std::vector<double> audio_buffer);
     int ProcessBuffer ();
-    std::string GetDecodedString (); 
+    std::string GetDecodedString ();
+    void ResetDecodedString();
     void SetCallBack (DebugInfo callback_fun);
     void Reset();
     //void SetVersion(std::string version_select);

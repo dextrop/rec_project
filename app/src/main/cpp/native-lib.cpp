@@ -37,6 +37,14 @@ Java_com_trillbit_myapplication_core_CWrapper_setUp(JNIEnv *env, jclass clazz) {
 
 extern "C"
 JNIEXPORT void JNICALL
+Java_com_trillbit_myapplication_core_CWrapper_resetDecodedString(JNIEnv *env, jclass clazz) {
+    // TODO: implement setUp()
+    sdkInstance.ResetDecodedString();
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
 Java_com_trillbit_myapplication_core_CWrapper_addBuffer(JNIEnv *env, jclass clazz,
                                                         jshortArray samples, jint len) {
     // TODO: implement addBuffer()

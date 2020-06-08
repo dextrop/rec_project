@@ -42,25 +42,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initSDK() {
-//        trillSDK = new TrillSDK(this);
-//        trillSDK.attach_callback(new TrillCallbacks() {
-//            @Override
-//            public void onSDKReady(int status) {
-//                super.onSDKReady(status);
-//            }
-//
-//            @Override
-//            public void onReceived(String payload) {
-//                super.onReceived(payload);
-//            }
-//
-//            @Override
-//            public void onError(String errMessage) {
-//                super.onError(errMessage);
-//            }
-//        });
-//        TestCoreLibrary test_core = new TestCoreLibrary(this);
+        trillSDK = new TrillSDK(this);
+        trillSDK.attach_callback(new TrillCallbacks() {
+            @Override
+            public void onSDKReady(int status) {
+                super.onSDKReady(status);
+            }
 
+            @Override
+            public void onReceived(String payload) {
+                super.onReceived(payload);
+            }
+
+            @Override
+            public void onError(String errMessage) {
+                super.onError(errMessage);
+            }
+        });
+//        TestCoreLibrary test_core = new TestCoreLibrary(this);
     }
 
     @Override

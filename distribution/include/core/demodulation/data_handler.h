@@ -59,6 +59,7 @@ class DataHandler {
 public:
     DataHandler();
     void Reset();
+    void ResetDecodedString();
     void AddBuffer(const std::vector<double>& buffer);
     void ProcessChunk();
     int ProcessAcknack(); //processing acknack
