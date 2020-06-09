@@ -42,6 +42,13 @@ Java_com_trillbit_myapplication_core_CWrapper_resetDecodedString(JNIEnv *env, jc
     sdkInstance.ResetDecodedString();
 }
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_trillbit_myapplication_core_CWrapper_setExpectedData(JNIEnv *env, jclass clazz, jstring expectedPayload) {
+    // TODO: implement setUp()
+    const char *expected_string = env->GetStringUTFChars(expectedPayload,0);
+    sdkInstance.SetExpectedData(expected_string);
+}
 
 extern "C"
 JNIEXPORT void JNICALL

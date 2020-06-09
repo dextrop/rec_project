@@ -10,6 +10,7 @@ public class CWrapper {
     private static native int processBuffer();
     private static native String getDecodedString();
     private static native void resetDecodedString();
+    private static native void setExpectedData(String expectedData);
 
     public CWrapper() {
         setUp();
@@ -30,4 +31,6 @@ public class CWrapper {
     public String GetDecodedString() { return getDecodedString();}
 
     public void ResetDecodedString() { resetDecodedString();}
+
+    public void SetExpectedData(String expectedPayload) {setExpectedData(expectedPayload);}
 }

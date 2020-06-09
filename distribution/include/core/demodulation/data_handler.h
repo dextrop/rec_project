@@ -67,9 +67,7 @@ public:
     DemodState GetCurrentState();
     void SetCallBack(DebugInfo callback_fun);
     void SetVersion (std::string version_select);
-#ifdef DEBUG
-    std::vector<bool> expected_bits;
-#endif
+    void SetExpPayload(std::string &exp_payload);
     void ProcessCts(); 
     void ProcessFts(); 
     void ProcessData(); 
@@ -89,6 +87,7 @@ private:
   int counter_;
   Fec fec_;
   std::string decoded_payload_; //decoded payload
+  std::string expected_payload_;
   DebugInfo debug_info_; //for printing the debug information into the callback
   CtsParams& cts_params_; //reference to cts parameters
   FtsParams& fts_params_; //reference to fts parameters

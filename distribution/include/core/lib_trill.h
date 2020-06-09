@@ -32,9 +32,7 @@ class LibTrill {
     //void SetVersion(std::string version_select);
     //void SetupDemod (int payload_len ,fec_scheme fec_s);
     int ProcessAcknack();
-#ifdef DEBUG
-    void SetExpectedData(string payload);
-#endif
+    void SetExpectedData(std::string payload);
     DemodState GetDemodState ();
 
   private:
