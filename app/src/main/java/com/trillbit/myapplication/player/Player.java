@@ -98,8 +98,6 @@ public class Player {
                         playAudio(audio_samples);
                         play_counter += 1;
                     }
-
-
                 }
 
                 @Override

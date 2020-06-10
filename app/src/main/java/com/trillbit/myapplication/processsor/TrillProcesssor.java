@@ -21,6 +21,9 @@ public class TrillProcesssor {
 
     private int sdkState = 0;
 
+    int DECODE_STATE = 0;
+
+
     public TrillProcesssor(CWrapper cWrapper) {
         this.cWrapper = cWrapper;
     }
@@ -37,12 +40,19 @@ public class TrillProcesssor {
         this.cWrapper.AddBuffer(buffer);
     }
 
-    private void processOutput(String result) {
-        int len = result.length();
-        if (len > 3) {
-            Log.e(TAG, "Decoded: " + result.length() + ", " + result);
-            this.callbacks.onReceived(result);
+    private void processOutput(int result) {
+        if (result == 1 && DECODE_STATE == 0) {
+            Log.e(TAG, "CTS Detected");
+            DECODE_STATE = 1;
+        } else if (result == 2 && DECODE_STATE == 1) {
+            Log.e(TAG, "FTS Detected");
+            DECODE_STATE = 2;
+        } else if (result == 3 && DECODE_STATE == 2) {
+            String decodedString = cWrapper.GetDecodedString();
             cWrapper.ResetDecodedString();
+            this.callbacks.onReceived(decodedString);
+            DECODE_STATE = 0;
+            Log.e(TAG, "Data Decoded " + decodedString);
         }
     }
 
@@ -54,9 +64,7 @@ public class TrillProcesssor {
                 public void run() {
                     while (isProcessing) {
                         int result = cWrapper.ProcessBuffer();
-//                        Log.e(TAG, "Demodulation state : "+ result);
-                        String decodedString = cWrapper.GetDecodedString();
-                        processOutput(decodedString);
+                        processOutput(result);
                     }
                     sdkState = 0;
                     ProcessorThread.interrupt();
