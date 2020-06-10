@@ -75,7 +75,6 @@ public class TrillSDK {
             @Override
             public void onBufferReceived(short[] buffer) {
                 super.onBufferReceived(buffer);
-                Log.e("OnBufferReceived", "Buffer size : " + buffer.length);
                 if (processor_state == 1) {
                     processor.addBuffer(buffer);
                 }

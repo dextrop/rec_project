@@ -22,7 +22,7 @@ int dataLength = 6;
 //int NO_OF_PREV_CTS_CHUNKS = 8;
 
 void info_callback(string info) {
-    __android_log_print(ANDROID_LOG_ERROR, "Native LOGS -> ", "Data :  %s ", info.c_str());
+//    __android_log_print(ANDROID_LOG_ERROR, "Native LOGS -> ", "Data :  %s ", info.c_str());
 }
 
 extern "C"
@@ -76,12 +76,6 @@ Java_com_trillbit_myapplication_core_CWrapper_processBuffer(JNIEnv *env, jclass 
     try {
 
         int result = sdkInstance.ProcessBuffer();
-//        __android_log_print(ANDROID_LOG_ERROR, "Final Callback ", "Decoded : %s",
-//                            std::to_string(result).c_str());
-//        if (result.length() > 3) {
-//            __android_log_print(ANDROID_LOG_ERROR, "Final Callback ", "Decoded : %s",
-//                                result.c_str());
-//        }
         return result;
     } catch (...){
         __android_log_print(ANDROID_LOG_ERROR, "JNI LOGS", "DATA Abort catch done");
