@@ -59,6 +59,7 @@ public class TrillProcesssor {
     private void startProcess() {
         if (isProcessing && sdkState == 0) {
             sdkState = 1;
+            cWrapper.SetExpectedData("abcdef");
             ProcessorThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
